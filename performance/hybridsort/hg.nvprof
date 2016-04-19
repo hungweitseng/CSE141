@@ -1,0 +1,46 @@
+Sorting list of 1000000 floats
+HGProfile: FileInput 4738
+HGProfile: CPUFindMinMax 0 m:0.000000 M:5.000000
+Sorting on GPU...==11916== NVPROF is profiling process 11916, command: ./hybridsort_hg /mnt/princeton/h1tseng/rodinia_3.0/data/hybridsort/1000000.bin 1000000
+done.
+Sorting on CPU...done.
+Checking result...==11916== Profiling application: ./hybridsort_hg /mnt/princeton/h1tseng/rodinia_3.0/data/hybridsort/1000000.bin 1000000
+PASSED.
+GPU iterations: 4
+Average CPU execution time: 248.210007 ms
+Average GPU execution time: 5.983000 ms
+    - Upload		: 424.940491 ms
+    - Download		: 1.412750 ms
+    - Bucket sort	: 1.773000 ms
+    - Merge sort	: 4.210000 ms
+==11916== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 41.23%  11.861ms        36  329.46us  62.656us  578.18us  mergeSortPass(float4*, int, int)
+ 13.56%  3.9017ms         4  975.42us  972.91us  978.19us  bucketsort(float*, int*, float*, int, unsigned int*, unsigned int*)
+ 13.27%  3.8179ms        12  318.15us  3.0080us  1.7142ms  [CUDA memcpy DtoH]
+ 11.92%  3.4292ms         4  857.31us  857.03us  857.90us  bucketcount(float*, int*, unsigned int*, int)
+  9.59%  2.7593ms        24  114.97us  1.6320us  718.60us  [CUDA memcpy HtoD]
+  6.88%  1.9790ms         4  494.74us  493.96us  495.40us  histogram1024Kernel(unsigned int*, float*, float, float, int)
+  1.24%  357.51us         4  89.376us  88.897us  89.665us  mergepack(float*, float*)
+  0.94%  270.44us         4  67.608us  67.105us  68.096us  bucketprefixoffset(unsigned int*, unsigned int*, int)
+  0.72%  207.91us         4  51.976us  51.520us  52.320us  mergeSortFirst(float4*, int)
+  0.64%  184.87us        16  11.554us  3.8720us  32.384us  [CUDA memset]
+
+==11916== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 90.90%  338.46ms        32  10.577ms  5.3270us  336.17ms  cudaMalloc
+  3.93%  14.630ms        24  609.57us  10.905us  2.8446ms  cudaMemcpy
+  3.04%  11.317ms         4  2.8294ms  2.8261ms  2.8369ms  cudaThreadSynchronize
+  1.09%  4.0581ms        12  338.18us  9.2130us  996.12us  cudaMemcpyToSymbol
+  0.44%  1.6517ms        32  51.615us  5.8150us  109.92us  cudaFree
+  0.34%  1.2694ms        60  21.156us  14.664us  59.640us  cudaLaunch
+  0.08%  284.47us        16  17.779us  11.852us  28.250us  cudaMemset
+  0.07%  257.71us        83  3.1040us     594ns  99.517us  cuDeviceGetAttribute
+  0.04%  157.68us        44  3.5830us  3.2430us  6.8640us  cudaBindTexture
+  0.04%  134.16us       196     684ns     575ns  5.8750us  cudaSetupArgument
+  0.01%  48.077us        60     801ns     692ns  1.9460us  cudaConfigureCall
+  0.01%  29.743us         1  29.743us  29.743us  29.743us  cuDeviceTotalMem
+  0.01%  25.898us         1  25.898us  25.898us  25.898us  cuDeviceGetName
+  0.00%  2.7970us         4     699ns     683ns     716ns  cudaCreateChannelDesc
+  0.00%  2.3760us         2  1.1880us     723ns  1.6530us  cuDeviceGetCount
+  0.00%  1.5210us         2     760ns     691ns     830ns  cuDeviceGet

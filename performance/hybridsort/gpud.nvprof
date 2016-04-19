@@ -1,0 +1,66 @@
+PC: 0 3 2
+PC: 1 4 0
+PC: 2 5 7
+PC: 3 -1 8
+PC: 4 6 1
+PC: 5 -1 3
+PC: 6 7 10003
+PC: 7 8 4
+PC: 8 9 5
+PC: 9 10 3
+==2870== NVPROF is profiling process 2870, command: ./hybridsort_gpud /mnt/princeton/h1tseng/rodinia_3.0/data/hybridsort/300000000.bin 300000000
+ioctl error
+Sorting list of 300000000 floats
+HGProfile: FileInput 1510677
+HGProfile: CPUFindMinMax 0 m:0.000000 M:5.000000
+Sorting on GPU...done.
+Page Faults: 42072
+CPU Cycles: 11279079518
+Stalled Frontend: 6921587385
+Instructions: 11991959194
+DTLB_MISSES: 1579468
+BRANCHES: 2402970097
+BRANCH_MISSES: 1075838
+PERF_COUNT_SW_CONTEXT_SWITCHES: 4081
+GPU iterations: 1
+Total GPU execution time: 3467888.000000 us
+    - Upload		: 3229.000000 us
+    - Download		: 408958.000000 us
+    - Bucket sort	: 362855.000000 us
+    - Merge sort	: 3105033.000000 us
+HGProfile: Total 5393064.000000
+==2870== Profiling application: ./hybridsort_gpud /mnt/princeton/h1tseng/rodinia_3.0/data/hybridsort/300000000.bin 300000000
+==2870== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 55.41%  2.66644s        17  156.85ms  16.399ms  212.02ms  mergeSortPass(float4*, int, int)
+ 19.46%  936.45ms         6  156.08ms  1.6320us  936.44ms  [CUDA memcpy HtoD]
+  8.48%  408.25ms         3  136.08ms  3.0080us  408.24ms  [CUDA memcpy DtoH]
+  8.22%  395.74ms         1  395.74ms  395.74ms  395.74ms  bucketsort(float*, int*, float*, int, unsigned int*, unsigned int*)
+  4.12%  198.44ms         1  198.44ms  198.44ms  198.44ms  bucketcount(float*, int*, unsigned int*, int)
+  2.98%  143.62ms         1  143.62ms  143.62ms  143.62ms  histogram1024Kernel(unsigned int*, float*, float, float, int)
+  0.42%  20.446ms         1  20.446ms  20.446ms  20.446ms  bucketprefixoffset(unsigned int*, unsigned int*, int)
+  0.39%  18.887ms         1  18.887ms  18.887ms  18.887ms  mergepack(float*, float*)
+  0.34%  16.221ms         1  16.221ms  16.221ms  16.221ms  mergeSortFirst(float4*, int)
+  0.16%  7.6443ms         4  1.9111ms  3.8400us  7.6310ms  [CUDA memset]
+
+==2870== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 52.78%  2.68490s         1  2.68490s  2.68490s  2.68490s  cudaThreadSynchronize
+ 33.62%  1.71005s         6  285.01ms  14.668us  938.54ms  cudaMemcpy
+  8.25%  419.56ms         3  139.85ms  10.714us  419.53ms  cudaMemcpyToSymbol
+  5.28%  268.39ms        10  26.839ms  5.5630us  263.97ms  cudaMalloc
+  0.06%  2.8006ms         9  311.18us  2.9040us  890.78us  cudaFree
+  0.01%  596.59us       166  3.5930us     594ns  117.39us  cuDeviceGetAttribute
+  0.01%  480.51us        23  20.891us  15.152us  57.622us  cudaLaunch
+  0.00%  82.139us         4  20.534us  11.829us  30.664us  cudaMemset
+  0.00%  74.276us         2  37.138us  36.721us  37.555us  cuDeviceTotalMem
+  0.00%  67.053us        19  3.5290us  3.0480us  6.8530us  cudaBindTexture
+  0.00%  66.189us         2  33.094us  31.487us  34.702us  cuDeviceGetName
+  0.00%  53.228us        73     729ns     600ns  4.2590us  cudaSetupArgument
+  0.00%  20.048us        23     871ns     770ns  2.1100us  cudaConfigureCall
+  0.00%  3.4100us         3  1.1360us     798ns  1.7640us  cuDeviceGetCount
+  0.00%  2.3850us         3     795ns     645ns     911ns  cuDeviceGet
+  0.00%  2.3520us         1  2.3520us  2.3520us  2.3520us  cuPointerGetAttribute
+  0.00%  1.3590us         1  1.3590us  1.3590us  1.3590us  cuDriverGetVersion
+  0.00%  1.3020us         1  1.3020us  1.3020us  1.3020us  cuInit
+  0.00%     671ns         1     671ns     671ns     671ns  cudaCreateChannelDesc

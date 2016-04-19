@@ -1,0 +1,3 @@
+#./hybridsort r
+sudo ~/bin/bin/clearcache.sh
+./hybridsort_cpu /homes/h1tseng/Gordon/PMCS/benchmarks/rodinia_3.0/data/hybridsort/300000000.bin 300000000
