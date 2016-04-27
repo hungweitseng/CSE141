@@ -3,7 +3,7 @@ all: madd arraySort
 madd: 
 	gcc -O3 madd.c -o madd 
 
-loopunroll: 
+arraySort: 
 	g++ arraySort.cpp -o arraySort
 
 clean:
