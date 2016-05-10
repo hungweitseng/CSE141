@@ -29,7 +29,7 @@ int main(int argc, char **argv)
   if(argc >= 4)
     student_average = 0;
   gradesheet = (struct grades *)malloc((total_number_students + 1)*sizeof(struct grades));
-  for(i=0;i<total_number_students; i++)
+  for(i=0;i<total_number_students+1; i++)
   {
       gradesheet[i].homework = (double *)malloc((total_number_students)*sizeof(double));
       for(j=0;j<homework_items;j++)
