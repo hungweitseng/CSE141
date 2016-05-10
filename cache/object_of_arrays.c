@@ -15,6 +15,7 @@ int main(int argc, char **argv)
   int total_number_students = 28800;
   int homework_items = 10000;
   double average = 0;
+  int student_average = 1;
   if(argc >= 3)
   {
     total_number_students = atoi(argv[1]);
@@ -25,12 +26,14 @@ int main(int argc, char **argv)
     fprintf(stderr,"%s total_number_students homework_items",argv[0]);
     exit(1);
   }
+  if(argc >= 4)
+    student_average = 0;
 
   gradesheet.id = (int *)malloc(total_number_students*sizeof(int));
   for(i=0;i<total_number_students;i++)
     gradesheet.id[i] = rand();
 
-  gradesheet.homework = (double **)malloc(homework_items*sizeof(double *));
+  gradesheet.homework = (double **)malloc((homework_items+1)*sizeof(double *));
 
   for(i=0;i<homework_items;i++)
   {
@@ -41,15 +44,31 @@ int main(int argc, char **argv)
 
   gradesheet.average = (double *)malloc(total_number_students*sizeof(double));
   
-  for(i=0;i<total_number_students; i++)
+  /* Counting average for each student */
+  if(student_average)
   {
+    for(i=0;i<total_number_students; i++)
+    {
       gradesheet.average[i] = 0.0;
       for(j=0;j<homework_items;j++)
       {
         gradesheet.average[i]+=gradesheet.homework[j][i];
       }
       gradesheet.average[i] /= homework_items;
+    }
+  }  
+  /* Counting average for each homework */
+  else
+  {
+    for(i = 0;i < homework_items; i++)
+    {
+      gradesheet.homework[i][total_number_students] = 0.0;
+      for(j = 0; j < total_number_students;j++)
+      {
+        gradesheet.homework[i][total_number_students] += gradesheet.homework[i][j];
+      }
+      gradesheet.homework[i][total_number_students] /= total_number_students;
+    }
   }
-  
   return 0;
 }
