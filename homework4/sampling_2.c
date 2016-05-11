@@ -20,7 +20,7 @@ int main()
     }
     gettimeofday(&time_end, NULL);
     execution_time = ((time_end.tv_sec * 1000000 + time_end.tv_usec) - (time_start.tv_sec * 1000000 + time_start.tv_usec))/1000000.0;
-    fprintf(stderr, "Array size: %d items, throughput: %lf MB/seconds average = %lf\n",size,stride, (double)(8*samples)/(execution_time*1024*1024), average/samples);
+    fprintf(stderr, "Array size: %d items, throughput: %lf MB/seconds average = %lf\n",size, (double)(8*samples)/(execution_time*1024*1024), average/samples);
   }
   return 0;
 }
