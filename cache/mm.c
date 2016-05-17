@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 int ARRAY_SIZE = 500;
+void mm(int **a, int **b, int **c);
 
 int main(int argc, char **argv)
 {
@@ -30,9 +31,9 @@ int main(int argc, char **argv)
     for(j = 0; j < ARRAY_SIZE; j++)
       c[i][j] = 0;
   }
-//  mm(a, b, c);
+  mm(a, b, c);
   /* Do matrix multiplication */
-  for(i = 0; i < ARRAY_SIZE; i++)
+/*  for(i = 0; i < ARRAY_SIZE; i++)
   {
     for(j = 0; j < ARRAY_SIZE; j++)
     {
@@ -41,7 +42,7 @@ int main(int argc, char **argv)
         c[i][j] += a[i][k]*b[k][j];
       }
     }
-  }  
+  }*/  
 /*
   for(i = 0; i < ARRAY_SIZE; i++)
   {
@@ -54,7 +55,7 @@ int main(int argc, char **argv)
 */
   return 0;
 }
-/*
+
 void mm(int **a, int **b, int **c)
 {
   int i,j,k;
@@ -70,4 +71,3 @@ void mm(int **a, int **b, int **c)
   }
   return;
 }
-*/
