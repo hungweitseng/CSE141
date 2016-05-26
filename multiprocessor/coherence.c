@@ -3,11 +3,12 @@
 #include <pthread.h>
 #include <unistd.h>
 
-volatile int loop;
+int loop;
 
 void* modifyloop(void *x)
 {
   sleep(1);
+
   while(loop < 1000)
   {
     loop++;
@@ -28,6 +29,6 @@ int main()
   }
   pthread_join(thread, NULL);
   
-  fprintf(stderr,"finished\n");
+  fprintf(stderr,"%4d finished\n", loop);
   return 0;
 }
