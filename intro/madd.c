@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int ARRAY_SIZE = 500;
 
@@ -32,7 +33,8 @@ int main(int argc, char **argv)
   }
 //  mm(a, b, c);
   /* Do matrix addition */
-  if((argv[2][0])=='r')
+  if(strcmp("row", argv[2])==0)
+  {
     for(i = 0; i < ARRAY_SIZE; i++)
     {
       for(j = 0; j < ARRAY_SIZE; j++)
@@ -40,6 +42,7 @@ int main(int argc, char **argv)
         c[i][j] = a[i][j]+b[i][j];
       }
     }
+  }
   else  
     for(j = 0; j < ARRAY_SIZE; j++)
     {

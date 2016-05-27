@@ -1,9 +1,9 @@
 all: madd arraySort
 
-madd: 
+madd: madd.c
 	gcc -O3 madd.c -o madd 
 
-arraySort: 
+arraySort: arraySort.cpp
 	g++ arraySort.cpp -o arraySort
 
 clean:
