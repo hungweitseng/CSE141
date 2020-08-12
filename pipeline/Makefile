@@ -1,12 +1,14 @@
-all: arraySort
+all: arithmetics arithmetics_2 
+
+#arraySort
 
 EXTRA_CFLAGS = -DHAVE_LINUX_PERF_EVENT_H
 
-arraySort: arraySort.cpp perfstats.o 
-	g++ $(EXTRA_CFLAGS) arraySort.cpp perfstats.o -o arraySort
+arithmetics: arithmetics.c 
+	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) arithmetics.c -o arithmetics
 
-perfstats.o: perfstats.c 
-	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) perfstats.c -c 
+arithmetics_2: arithmetics_2.c 
+	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) arithmetics_2.c -o arithmetics_2
 
 clean:
-		rm -f arraySort 
+		rm -f arithmetics arithmetics_2
